@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -32,6 +33,46 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+
+
+myPlayer = Player("Dave", room['outside'])
+
+while True: #REPL parser = command loop
+    command=input('Enter a command: ') #READ
+    if command == "n": #Eval
+        if myPlayer.current_room.n_to: 
+            myPlayer.current_room=myPlayer.current_room.n_to
+            print(myPlayer.current_room.description) #prints location
+
+        else:
+            print("No path in that direction")
+
+    if command == "s": #Eval
+        if myPlayer.current_room.s_to: 
+            myPlayer.current_room=myPlayer.current_room.s_to
+            print(myPlayer.current_room.description) #prints location
+
+        else:
+            print("No path in that direction")
+    
+    if command == "e": #Eval
+        if myPlayer.current_room.e_to: 
+            myPlayer.current_room=myPlayer.current_room.e_to
+            print(myPlayer.current_room.description) #prints location
+
+        else:
+            print("No path in that direction")
+
+    if command == "w": #Eval
+        if myPlayer.current_room.w_to: 
+            myPlayer.current_room=myPlayer.current_room.w_to
+            print(myPlayer.current_room.description) #prints location
+        
+        else:
+            print("No path in that direction")
+        
+    if command == "q":
+        exit(0)
 
 #
 # Main
